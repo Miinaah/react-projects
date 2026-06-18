@@ -1,39 +1,51 @@
 import { useState } from "react";
 
 function App() {
-  const [cgpa, setCgpa] = useState("");
+  const [height, setHeight] = useState("");
+  const [weight, setWeight] = useState("");
   const [result, setResult] = useState("");
 
-  function checkCGPA() {
-    if (Number(cgpa) >= 9 && Number(cgpa)<=10) {
-      setResult("Outstanding");
-    }else if(Number(cgpa>=8 && Number(cgpa<9)))
-    {
-      setResult("Excellent");
-    }else if(Number(cgpa)>=7 && Number(cgpa)<8)
-    {
-      setResult("Good");
-    }
-     else {
-      setResult("Need Improvement!");
-    }
+  function checkBMI() {
+    let bmi=weight/(height*height);
+    if (Number(bmi) < 18.5)
+      {
+        setResult("Under Weight");
+      }
+    else if (Number(bmi) < 25)
+      {
+        setResult("Normal Weight");
+      }
+    else if (Number(bmi) < 30)
+      {
+        setResult("Over Weight");
+      }
+    else
+      {
+        setResult("Obese");
+      }
   }
 
   return (
     <div>
-      <h1>CGPA CHECKER</h1>
+      <h1>BMI CALCULATOR</h1>
 
       <input
         type="number"
-        placeholder="Enter CGPA"
-        value={cgpa}
-        onChange={(e) => setCgpa(e.target.value)}
+        placeholder="Enter Height in decimals"
+        value={height}
+        onChange={(e) => setHeight(e.target.value)}
+      />
+      <input
+        type="number"
+        placeholder="Enter your Weight"
+        value={weight}
+        onChange={(e) => setWeight(e.target.value)}
       />
 
       <br />
       <br />
 
-      <button onClick={checkCGPA}>
+      <button onClick={checkBMI}>
         Click
       </button>
 
